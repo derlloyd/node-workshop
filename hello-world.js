@@ -3,6 +3,5 @@
 // "Hello World!" to the console
 
 setTimeout(function() {
-    console.log("Hello World!");    
+    console.log("Hello World!");
 }, 10000);
-

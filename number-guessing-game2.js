@@ -6,40 +6,93 @@
 // If they guess right, congratulate them. 
 // Otherwise, give them a message saying what the correct number was, 
 // as well as their list of guesses.
-                    
-var randomNumber = Math.ceil(Math.random() * 100);
-console.log(randomNumber);
-console.log("You've got 4 chances to guess a random number between 1 and 100, good luck.");
 
-var guesses = [0, 0, 0, 0];
+var randomNumber = Math.ceil(Math.random() * 100);
+console.log("****" + randomNumber + "******");
+var numGuesses = 0;
+var maxGuesses = 4;
+var guesses = [];
+
+console.log("You've got " + maxGuesses +
+    " chances to guess a random number between 1 and 100, good luck.");
 
 var prompt = require('prompt');
 prompt.start();
 
-guesses.forEach(function(element, index) {
-    // prompt.get(["guess"], function(err, result) {
-        // var guessTry = 
-        prompt.get(["guess"], function(err, result) {
-            element = result;
-            console.log(result);
-            prompt.get(["guess2"], function(err, result) {
-                element = result;
-                console.log(guesses)
-            })  
-        })
-        // var guessTry = prompt("guess:");
-        //guesses[index] = guessTry; 
-        // console.log(guesses[index] + "    ----    " + index + "    ----    " + "guessTry");
-    })
-    
-// })
+guessNumber();
 
-console.log(guesses);
+function guessNumber() {
+
+    prompt.get(["guess"], function(err, result) {
+
+        var userNumber = Number(result.guess);
+        guesses.push(userNumber);
+
+        if (userNumber === randomNumber) {
+            console.log("you win!!!!!!!!!!!!!!!");
+            return;
+        }
+        else {
+            numGuesses += 1;
+            if (numGuesses >= maxGuesses) {
+                console.log("you lose");
+                console.log("your guesses were " + guesses + " and the number was " + randomNumber);
+                return;
+            }
+            else {
+                if (userNumber >= randomNumber) {
+                    console.log("too high");
+                }
+                else {
+                    console.log("too low");
+                };
+                guessNumber();
+                return;
+
+            }
+
+        }
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// guesses.forEach(function(element, index) {
+//     // prompt.get(["guess"], function(err, result) {
+//         // var guessTry = 
+//         prompt.get(["guess"], function(err, result) {
+//             element = result;
+//             console.log(result);
+//             prompt.get(["guess2"], function(err, result) {
+//                 element = result;
+//                 console.log(guesses)
+//             })  
+//         })
+//         // var guessTry = prompt("guess:");
+//         //guesses[index] = guessTry; 
+//         // console.log(guesses[index] + "    ----    " + index + "    ----    " + "guessTry");
+//     })
+
+// // })
+
+// console.log(guesses);
 
 
 
 // prompt.get(["first guess"], function(err, result) {
-    
+
 //     var guess1 = Number(result["first guess"]);
 
 //     if (guess1 === randomNumber) {

@@ -9,7 +9,7 @@ var request = require('request');
 
 request(issAddress, function(err, result) {
     var resultObject = JSON.parse(result.body);
-    var lat1 = resultObject.iss_position.latitude;
+    var lat1 = resultObject.iss_position.latitude;  
     var lon1 = resultObject.iss_position.longitude;
 
     var prompt = require('prompt');
